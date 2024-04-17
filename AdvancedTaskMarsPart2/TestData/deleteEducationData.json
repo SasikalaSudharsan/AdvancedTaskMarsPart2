@@ -1,0 +1,9 @@
+﻿[
+  {
+    "Id": 1,
+    "UniversityName": "University of Austin",
+    "Country": "United States",
+    "Degree": "English",
+    "ExpectedMessage": "Education entry successfully removed"
+  }
+]
