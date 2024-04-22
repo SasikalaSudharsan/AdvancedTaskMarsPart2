@@ -11,8 +11,8 @@ namespace AdvancedTaskMarsPart2.Pages.Components.AccountMenu
         {
             try
             {
-                Wait.WaitToBeClickable(driver, "XPath", "//span[@class='item ui dropdown link']", 6);
-                UserTab = driver.FindElement(By.XPath("//span[@class='item ui dropdown link']"));
+                Wait.WaitToBeClickable(driver, "XPath", "//*[starts-with(text(),'Hi')]", 4);
+                UserTab = driver.FindElement(By.XPath("//*[starts-with(text(),'Hi')]"));
             }
             catch (Exception ex)
             {
@@ -22,7 +22,6 @@ namespace AdvancedTaskMarsPart2.Pages.Components.AccountMenu
 
         public void clickUserTab()
         {
-            Thread.Sleep(6000);
             renderUserTab();
             UserTab.Click();
         }

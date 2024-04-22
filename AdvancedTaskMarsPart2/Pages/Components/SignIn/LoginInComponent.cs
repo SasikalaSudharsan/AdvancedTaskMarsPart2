@@ -27,7 +27,7 @@ namespace AdvancedTaskMarsPart2.Pages.Components.SignIn
         {
             renderLogin();
             UsernameTextbox.SendKeys("sasi.ei34@gmail.com");
-            PasswordTextbox.SendKeys("Selenium@2");
+            PasswordTextbox.SendKeys("Selenium@4");
             LoginButton.Click();
         }
     }

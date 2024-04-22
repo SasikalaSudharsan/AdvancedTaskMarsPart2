@@ -1,4 +1,5 @@
-﻿using AdvancedTaskMarsPart2.Model;
+﻿using AdvancedTaskMarsPart2.AssertHelpers;
+using AdvancedTaskMarsPart2.Model;
 using AdvancedTaskMarsPart2.Pages.Components.AccountMenu;
 using AdvancedTaskMarsPart2.Pages.Components.SignIn;
 using AdvancedTaskMarsPart2.Utilities;
@@ -38,9 +39,12 @@ namespace AdvancedTaskMarsPart2.StepDefinitions
         }
 
         [Then(@"New Password updated with '([^']*)' successfully")]
-        public void ThenNewPasswordUpdatedWithSuccessfully(string p0)
+        public void ThenNewPasswordUpdatedWithSuccessfully(int id)
         {
-            throw new PendingStepException();
+            ChangePasswordData changePasswordData = JsonReader.LoadData<ChangePasswordData>(@"changePassword.json").FirstOrDefault(x => x.Id == id);
+            string actualMessage = changePasswordComponent.getMessage();
+            ChangePasswordAssertHelper.assertChangePasswordSuccessMessage(changePasswordData.ExpectedMessage, actualMessage);
+            Console.WriteLine(actualMessage);
         }
 
     }
