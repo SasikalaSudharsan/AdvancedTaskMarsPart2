@@ -27,7 +27,11 @@ namespace AdvancedTaskMarsPart2.StepDefinitions
         public void GivenUserLoggedIntoMarsURLAndNavigatesToDescriptionIcon()
         {
             signInComponent.clickSignInButton();
-            loginInComponent.LoginActions();
+            List<UserInformation> userInformatioList = JsonReader.LoadData<UserInformation>(@"UserInformation.json");
+            foreach (var userInformation in userInformatioList)
+            {
+                loginInComponent.LoginActions(userInformation);
+            }
             profileMenuTabsComponents.clickDescriptionIcon();
         }
 
@@ -44,8 +48,6 @@ namespace AdvancedTaskMarsPart2.StepDefinitions
             DescriptionData descriptionData = JsonReader.LoadData<DescriptionData>(@"addDescriptionData.json").FirstOrDefault(x => x.Id == id);
             string actualMessage = profileDescriptionComponent.getMessage();
             DescriptionAssertHelper.assertAddDescriptionSuccessMessage(descriptionData.ExpectedMessage, actualMessage);
-            Console.WriteLine(actualMessage);
         }
-
     }
 }

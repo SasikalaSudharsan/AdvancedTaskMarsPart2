@@ -27,7 +27,11 @@ namespace AdvancedTaskMarsPart2.StepDefinitions
         public void GivenUserLoggedIntoMarsURLAndNavigatesToUserTab()
         {
             signInComponent.clickSignInButton();
-            loginInComponent.LoginActions();
+            List<UserInformation> userInformatioList = JsonReader.LoadData<UserInformation>(@"UserInformation.json");
+            foreach (var userInformation in userInformatioList)
+            {
+                loginInComponent.LoginActions(userInformation);
+            }
             userTabComponent.clickUserTab();
         }
 
@@ -44,8 +48,9 @@ namespace AdvancedTaskMarsPart2.StepDefinitions
             ChangePasswordData changePasswordData = JsonReader.LoadData<ChangePasswordData>(@"changePassword.json").FirstOrDefault(x => x.Id == id);
             string actualMessage = changePasswordComponent.getMessage();
             ChangePasswordAssertHelper.assertChangePasswordSuccessMessage(changePasswordData.ExpectedMessage, actualMessage);
-            Console.WriteLine(actualMessage);
+            string newPassword = changePasswordData.NewPassword;
+            PasswordManager passwordManager = new PasswordManager();
+            passwordManager.WriteNewPasswordToJson(newPassword);
         }
-
     }
 }

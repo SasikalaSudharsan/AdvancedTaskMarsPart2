@@ -1,4 +1,5 @@
-﻿using AdvancedTaskMarsPart2.Utilities;
+﻿using AdvancedTaskMarsPart2.Model;
+using AdvancedTaskMarsPart2.Utilities;
 using OpenQA.Selenium;
 
 namespace AdvancedTaskMarsPart2.Pages.Components.SignIn
@@ -23,11 +24,11 @@ namespace AdvancedTaskMarsPart2.Pages.Components.SignIn
             }
         }
 
-        public void LoginActions()
+        public void LoginActions(UserInformation userInformation)
         {
             renderLogin();
-            UsernameTextbox.SendKeys("sasi.ei34@gmail.com");
-            PasswordTextbox.SendKeys("Selenium@4");
+            UsernameTextbox.SendKeys(userInformation.UserName);
+            PasswordTextbox.SendKeys(userInformation.Password);
             LoginButton.Click();
         }
     }

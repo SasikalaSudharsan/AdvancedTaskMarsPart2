@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <UpToDateCheckInput Remove="Feature\ManageRequestsFeature.feature" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
     <PackageReference Include="ExtentReports" Version="5.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />

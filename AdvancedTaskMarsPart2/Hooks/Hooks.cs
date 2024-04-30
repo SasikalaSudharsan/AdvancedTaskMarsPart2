@@ -17,7 +17,6 @@ namespace AdvancedTaskMarsPart2.Hooks
         public static void ExtentStart()
         {
             extent = new ExtentReports();
-            Console.WriteLine("Sasikala");
             var SparkReporter = new ExtentSparkReporter("D:\\Sasikala\\MVP_Studio\\AdvancedTaskPart2\\AdvancedTaskMarsPart2\\AdvancedTaskMarsPart2\\ExtentReport\\ExtentReport.html");
             extent.AttachReporter(SparkReporter);
         }
@@ -34,12 +33,17 @@ namespace AdvancedTaskMarsPart2.Hooks
         [AfterScenario]
         public void AfterScenario()
         {
-            //If tests fails capture screenshot
+            // Capture screenshot if scenario fails
             if (ScenarioContext.Current.TestError != null)
             {
                 string scenarioTitle = ScenarioContext.Current.ScenarioInfo.Title;
                 Console.WriteLine($"Scenario '{scenarioTitle}' failed: {ScenarioContext.Current.TestError.Message}");
                 CaptureScreenshot(scenarioTitle);
+                test.Fail($"Scenario '{scenarioTitle}' failed: {ScenarioContext.Current.TestError.Message}");
+            }
+            else
+            {
+                test.Pass("Scenario passed");
             }
             driver.Quit();
         }

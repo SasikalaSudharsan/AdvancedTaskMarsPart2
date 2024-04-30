@@ -1,4 +1,5 @@
 ﻿using AdvancedTaskMarsPart2.AssertHelpers;
+using AdvancedTaskMarsPart2.Model;
 using AdvancedTaskMarsPart2.Pages.Components.ProfileOverview;
 using AdvancedTaskMarsPart2.Pages.Components.SignIn;
 using AdvancedTaskMarsPart2.TestData;
@@ -29,7 +30,11 @@ namespace AdvancedTaskMarsPart2.StepDefinitions
         public void GivenUserLoggedIntoMarsURLAndNavigatesToCertificationsTab()
         {
             signInComponent.clickSignInButton();
-            loginInComponent.LoginActions();
+            List<UserInformation> userInformatioList = JsonReader.LoadData<UserInformation>(@"UserInformation.json");
+            foreach (var userInformation in userInformatioList)
+            {
+                loginInComponent.LoginActions(userInformation);
+            }
             profileMenuTabsComponents.clickCertificationsTab();
         }
 
@@ -53,7 +58,6 @@ namespace AdvancedTaskMarsPart2.StepDefinitions
             CertificationData certificationData = JsonReader.LoadData<CertificationData>(@"addCertificationsData.json").FirstOrDefault(x => x.Id == id);
             string actualMessage = addAndDeleteCertificationsComponent.getMessage();
             CertificationsAssertHelper.assertAddCertificationSuccessMessage(certificationData.ExpectedMessage, actualMessage);
-            Console.WriteLine(actualMessage);
         }
 
         [When(@"User deletes an existing certification with '([^']*)'")]
@@ -69,8 +73,6 @@ namespace AdvancedTaskMarsPart2.StepDefinitions
             CertificationData certificationData = JsonReader.LoadData<CertificationData>(@"deleteCertificationsData.json").FirstOrDefault(x => x.Id == id);
             string actualMessage = addAndDeleteCertificationsComponent.getMessage();
             CertificationsAssertHelper.assertDeleteCertificationSuccessMessage(certificationData.ExpectedMessage, actualMessage);
-            Console.WriteLine(actualMessage);
         }
-
     }
 }

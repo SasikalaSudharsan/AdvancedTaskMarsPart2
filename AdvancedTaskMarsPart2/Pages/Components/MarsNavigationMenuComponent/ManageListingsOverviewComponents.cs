@@ -102,7 +102,7 @@ namespace AdvancedTaskMarsPart2.Pages.Components.MarsNavigationMenuComponent
         public void clickUpdateButton(ShareSkillData shareSkillData)
         {
             string existingTitle = shareSkillData.ExistingTitle;
-            Thread.Sleep(4000);
+            Thread.Sleep(6000);
             renderEditButton(existingTitle);
             EditButton.Click();
         }
@@ -110,7 +110,7 @@ namespace AdvancedTaskMarsPart2.Pages.Components.MarsNavigationMenuComponent
         public void clickViewButton(ShareSkillData shareSkillData)
         {
             string title = shareSkillData.Title;
-            Thread.Sleep(4000);
+            Thread.Sleep(6000);
             renderViewComponents(title);
             ViewButton.Click();
         }
@@ -125,7 +125,7 @@ namespace AdvancedTaskMarsPart2.Pages.Components.MarsNavigationMenuComponent
         public void clickDeleteButton(ShareSkillData shareSkillData)
         {
             string title = shareSkillData.Title;
-            Thread.Sleep(4000);
+            Thread.Sleep(6000);
             renderDeleteButton(title);
             DeleteButton.Click();
             renderYesButton();

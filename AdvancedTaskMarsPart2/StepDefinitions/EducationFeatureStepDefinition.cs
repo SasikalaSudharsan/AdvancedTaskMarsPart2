@@ -1,4 +1,5 @@
 ﻿using AdvancedTaskMarsPart2.AssertHelpers;
+using AdvancedTaskMarsPart2.Model;
 using AdvancedTaskMarsPart2.Pages.Components.ProfileOverview;
 using AdvancedTaskMarsPart2.Pages.Components.SignIn;
 using AdvancedTaskMarsPart2.TestData;
@@ -29,7 +30,11 @@ namespace AdvancedTaskMarsPart2.StepDefinitions
         public void GivenUserLoggedIntoMarsURLAndNavigatesToEducationTab()
         {
             signInComponent.clickSignInButton();
-            loginInComponent.LoginActions();
+            List<UserInformation> userInformatioList = JsonReader.LoadData<UserInformation>(@"UserInformation.json");
+            foreach (var userInformation in userInformatioList)
+            {
+                loginInComponent.LoginActions(userInformation);
+            }
             profileMenuTabsComponents.clickEducationTab();
         }
 
@@ -53,7 +58,6 @@ namespace AdvancedTaskMarsPart2.StepDefinitions
             EducationData educationData = JsonReader.LoadData<EducationData>(@"addEducationData.json").FirstOrDefault(x => x.Id == id);
             string actualMessage = addAndDeleteEducationComponent.getMessage();
             EducationAssertHelper.assertAddEducationSuccessMessage(educationData.ExpectedMessage, actualMessage);
-            Console.WriteLine(actualMessage);
         }
 
         [When(@"User deletes an existing education with '([^']*)'")]
@@ -69,8 +73,6 @@ namespace AdvancedTaskMarsPart2.StepDefinitions
             EducationData educationData = JsonReader.LoadData<EducationData>(@"deleteEducationData.json").FirstOrDefault(x => x.Id == id);
             string actualMessage = addAndDeleteEducationComponent.getMessage();
             EducationAssertHelper.assertDeleteEducationSuccessMessage(educationData.ExpectedMessage, actualMessage);
-            Console.WriteLine(actualMessage);
         }
-
     }
 }
