@@ -31,5 +31,13 @@ namespace AdvancedTaskMarsPart2.Pages.Components.SignIn
             PasswordTextbox.SendKeys(userInformation.Password);
             LoginButton.Click();
         }
+
+        public void LoginActions(string username, string password)
+        {
+            renderLogin();
+            UsernameTextbox.SendKeys(username);
+            PasswordTextbox.SendKeys(password);
+            LoginButton.Click();
+        }
     }
 }

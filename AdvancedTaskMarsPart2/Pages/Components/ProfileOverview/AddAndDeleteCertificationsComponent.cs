@@ -14,7 +14,7 @@ namespace AdvancedTaskMarsPart2.Pages.Components.ProfileOverview
         private IWebElement successMessage;
         private IWebElement closeMessageIcon;
 
-        public void renderDeleteAllRecordsComponents()
+        public void renderDeleteAllCertificationsComponents()
         {
             try
             {
@@ -54,18 +54,18 @@ namespace AdvancedTaskMarsPart2.Pages.Components.ProfileOverview
             }
         }
 
-        public void DeleteAllRecords()
+        public void DeleteAllCertifications()
         {
             try
             {
-                Wait.WaitToBeClickable(driver, "XPath", "//div[@data-tab='fourth']//i[@class='remove icon']", 4);
+                Wait.WaitToBeClickable(driver, "XPath", "//div[@data-tab='fourth']//i[@class='remove icon']", 6);
             }
             catch (WebDriverTimeoutException e)
             {
                 return;
             }
-            renderDeleteAllRecordsComponents();
-            //Delete all records in the list
+            renderDeleteAllCertificationsComponents();
+            //Delete all certifications in the list
             foreach (IWebElement deleteButton in deleteButtons)
             {
                 deleteButton.Click();

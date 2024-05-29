@@ -35,6 +35,7 @@ namespace AdvancedTaskMarsPart2.Pages.Components.ProfileOverview
 
         public void clickAddNewButton()
         {
+            Thread.Sleep(8000);
             renderAddButton();
             AddNewButton.Click();
         }

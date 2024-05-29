@@ -23,27 +23,24 @@ namespace AdvancedTaskMarsPart2.StepDefinitions
             profileDescriptionComponent = new ProfileDescriptionComponent();
         }
 
-        [Given(@"User logged into Mars URL and navigates to Description icon")]
-        public void GivenUserLoggedIntoMarsURLAndNavigatesToDescriptionIcon()
+        [Given(@"User logged into Mars URL with login details '([^']*)' and navigates to Description icon")]
+        public void GivenUserLoggedIntoMarsURLWithLoginDetailsAndNavigatesToDescriptionIcon(int id)
         {
+            UserInformation userInformation = JsonReader.LoadData<UserInformation>(@"UserInformation.json").FirstOrDefault(x => x.Id == id);
             signInComponent.clickSignInButton();
-            List<UserInformation> userInformatioList = JsonReader.LoadData<UserInformation>(@"UserInformation.json");
-            foreach (var userInformation in userInformatioList)
-            {
-                loginInComponent.LoginActions(userInformation);
-            }
+            loginInComponent.LoginActions(userInformation);
             profileMenuTabsComponents.clickDescriptionIcon();
         }
 
-        [When(@"Enter the description details with '([^']*)'")]
-        public void WhenEnterTheDescriptionDetailsWith(int id)
+        [When(@"User adds description '([^']*)' in the profile page")]
+        public void WhenUserAddsDescriptionInTheProfilePage(int id)
         {
             DescriptionData descriptionData = JsonReader.LoadData<DescriptionData>(@"addDescriptionData.json").FirstOrDefault(x => x.Id == id);
             profileDescriptionComponent.enterDescription(descriptionData);
         }
 
-        [Then(@"Description '([^']*)' should be saved successfully")]
-        public void ThenDescriptionShouldBeSavedSuccessfully(int id)
+        [Then(@"The description '([^']*)' should be saved successfully")]
+        public void ThenTheDescriptionShouldBeSavedSuccessfully(int id)
         {
             DescriptionData descriptionData = JsonReader.LoadData<DescriptionData>(@"addDescriptionData.json").FirstOrDefault(x => x.Id == id);
             string actualMessage = profileDescriptionComponent.getMessage();

@@ -76,11 +76,12 @@ namespace AdvancedTaskMarsPart2.Feature
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("01 - Accept the received requests in the Manage Requests")]
-        [NUnit.Framework.TestCaseAttribute("1", null)]
-        public void _01_AcceptTheReceivedRequestsInTheManageRequests(string id, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("1", "1", null)]
+        public void _01_AcceptTheReceivedRequestsInTheManageRequests(string loginId, string id, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("loginId", loginId);
             argumentsOfScenario.Add("id", id);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01 - Accept the received requests in the Manage Requests", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
@@ -94,7 +95,8 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("User logged into Mars URL and navigates to Manage Requests tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("User logged into Mars URL with login details \'{0}\' and navigates to Manage Reques" +
+                            "ts tab", loginId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
  testRunner.When("User clicks received requests", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -111,11 +113,12 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("02 - Decline the received requests in the Manage Requests")]
-        [NUnit.Framework.TestCaseAttribute("2", null)]
-        public void _02_DeclineTheReceivedRequestsInTheManageRequests(string id, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("1", "1", null)]
+        public void _02_DeclineTheReceivedRequestsInTheManageRequests(string loginId, string id, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("loginId", loginId);
             argumentsOfScenario.Add("id", id);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02 - Decline the received requests in the Manage Requests", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 16
@@ -129,7 +132,8 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 17
- testRunner.Given("User logged into Mars URL and navigates to Manage Requests tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("User logged into Mars URL with login details \'{0}\' and navigates to Manage Reques" +
+                            "ts tab", loginId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 18
  testRunner.When("User clicks received requests", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -146,11 +150,12 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("03 - Complete the received requests in the Manage Requests")]
-        [NUnit.Framework.TestCaseAttribute("3", null)]
-        public void _03_CompleteTheReceivedRequestsInTheManageRequests(string id, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("1", "2", null)]
+        public void _03_CompleteTheReceivedRequestsInTheManageRequests(string loginId, string id, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("loginId", loginId);
             argumentsOfScenario.Add("id", id);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03 - Complete the received requests in the Manage Requests", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 26
@@ -164,7 +169,8 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 27
- testRunner.Given("User logged into Mars URL and navigates to Manage Requests tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("User logged into Mars URL with login details \'{0}\' and navigates to Manage Reques" +
+                            "ts tab", loginId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 28
  testRunner.When("User clicks received requests", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -182,11 +188,12 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("04 - Withdraw the sent requests in the Manage Requests")]
-        [NUnit.Framework.TestCaseAttribute("1", null)]
-        public void _04_WithdrawTheSentRequestsInTheManageRequests(string id, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("1", "1", null)]
+        public void _04_WithdrawTheSentRequestsInTheManageRequests(string loginId, string id, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("loginId", loginId);
             argumentsOfScenario.Add("id", id);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04 - Withdraw the sent requests in the Manage Requests", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 36
@@ -200,7 +207,8 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 37
- testRunner.Given("User logged into Mars URL and navigates to Manage Requests tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("User logged into Mars URL with login details \'{0}\' and navigates to Manage Reques" +
+                            "ts tab", loginId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 38
  testRunner.When("User clicks sent requests", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

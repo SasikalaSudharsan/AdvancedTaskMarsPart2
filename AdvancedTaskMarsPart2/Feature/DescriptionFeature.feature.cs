@@ -74,10 +74,10 @@ namespace AdvancedTaskMarsPart2.Feature
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01 - Enter description in the profile page")]
+        [NUnit.Framework.DescriptionAttribute("01 - Add description in the profile page")]
         [NUnit.Framework.CategoryAttribute("tag1")]
-        [NUnit.Framework.TestCaseAttribute("1", null)]
-        public void _01_EnterDescriptionInTheProfilePage(string id, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("1", "1", null)]
+        public void _01_AddDescriptionInTheProfilePage(string loginId, string descriptionId, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "tag1"};
@@ -87,8 +87,9 @@ namespace AdvancedTaskMarsPart2.Feature
             }
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("id", id);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01 - Enter description in the profile page", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            argumentsOfScenario.Add("loginId", loginId);
+            argumentsOfScenario.Add("descriptionId", descriptionId);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01 - Add description in the profile page", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -100,13 +101,14 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Given("User logged into Mars URL and navigates to Description icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.Given(string.Format("User logged into Mars URL with login details \'{0}\' and navigates to Description i" +
+                            "con", loginId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
- testRunner.When(string.Format("Enter the description details with \'{0}\'", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("User adds description \'{0}\' in the profile page", descriptionId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.Then(string.Format("Description \'{0}\' should be saved successfully", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("The description \'{0}\' should be saved successfully", descriptionId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

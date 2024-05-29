@@ -63,7 +63,7 @@ namespace AdvancedTaskMarsPart2.Pages.Components.MarsNavigationMenuComponent
 
         public void clickAcceptButton(ReceivedRequestsData receivedRequestsData)
         {
-            Thread.Sleep(25000);
+            Thread.Sleep(30000);
             string title = receivedRequestsData.Title;
             renderAcceptComponent(title);
             AcceptButton.Click();
@@ -81,7 +81,7 @@ namespace AdvancedTaskMarsPart2.Pages.Components.MarsNavigationMenuComponent
 
         public void clickDeclineButton(ReceivedRequestsData receivedRequestsData)
         {
-            Thread.Sleep(25000);
+            Thread.Sleep(30000);
             string title = receivedRequestsData.Title;
             renderDeclineComponent(title);
             DeclineButton.Click();
@@ -90,7 +90,7 @@ namespace AdvancedTaskMarsPart2.Pages.Components.MarsNavigationMenuComponent
 
         public void clickCompleteButton(ReceivedRequestsData receivedRequestsData)
         {
-            Thread.Sleep(15000);
+            Thread.Sleep(30000);
             string title = receivedRequestsData.Title;
             renderCompleteComponent(title);
             CompleteButton.Click();

@@ -1,0 +1,22 @@
+﻿[
+  {
+    "Id": 1,
+    "UniversityName": "University of London",
+    "Country": "United Kingdom",
+    "Title": "B.Tech",
+    "Degree": "Computer Science",
+    "YearOfGraduation": "2015",
+    "AddExpectedMessage": "Education has been added",
+    "DeleteExpectedMessage": "Education entry successfully removed"
+  },
+  {
+    "Id": 2,
+    "UniversityName": "Anna University",
+    "Country": "India",
+    "Title": "B.E",
+    "Degree": "Computer Science",
+    "YearOfGraduation": "2020",
+    "AddExpectedMessage": "Education has been added",
+    "DeleteExpectedMessage": "Education entry successfully removed"
+  }
+]

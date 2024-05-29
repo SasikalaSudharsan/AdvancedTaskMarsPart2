@@ -11,7 +11,7 @@ namespace AdvancedTaskMarsPart2.Pages.Components.SignIn
         {
             try
             {
-                Wait.WaitToBeClickable(driver, "XPath", "//div[@id='home']/div/div/div/div/a", 4);
+                Wait.WaitToBeClickable(driver, "XPath", "//div[@id='home']/div/div/div/div/a", 6);
                 SignInButton = driver.FindElement(By.XPath("//div[@id='home']/div/div/div/div/a"));
             }
             catch (Exception ex)

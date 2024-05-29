@@ -10,5 +10,7 @@ namespace AdvancedTaskMarsPart2.TestData
         public string Degree { get; set; }
         public string YearOfGraduation { get; set; }
         public string ExpectedMessage { get; set; }
+        public string AddExpectedMessage { get; set; }
+        public string DeleteExpectedMessage { get; set; }
     }
 }

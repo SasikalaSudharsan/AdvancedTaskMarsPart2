@@ -35,8 +35,8 @@ namespace AdvancedTaskMarsPart2.Feature
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Feature", "EducationFeature", "As a user, \r\nI would like to add, edit and delete education \r\nso that people seek" +
-                    "ing for education can look at it\t", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Feature", "EducationFeature", "As a user, \r\nI would like to add and delete education \r\nso that people seeking fo" +
+                    "r education can look at it\t", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,14 +75,23 @@ namespace AdvancedTaskMarsPart2.Feature
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01 - Delete all records in the education list")]
+        [NUnit.Framework.DescriptionAttribute("01 - Add and then delete education in the education list")]
         [NUnit.Framework.CategoryAttribute("tag1")]
-        public void _01_DeleteAllRecordsInTheEducationList()
+        [NUnit.Framework.TestCaseAttribute("1", "1", null)]
+        [NUnit.Framework.TestCaseAttribute("1", "2", null)]
+        public void _01_AddAndThenDeleteEducationInTheEducationList(string loginId, string educationId, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "tag1"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01 - Delete all records in the education list", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            argumentsOfScenario.Add("loginId", loginId);
+            argumentsOfScenario.Add("educationId", educationId);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01 - Add and then delete education in the education list", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -94,61 +103,33 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 9
- testRunner.Given("User logged into Mars URL and navigates to Education tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.Given(string.Format("User logged into Mars URL with login details \'{0}\' and navigates to Education tab" +
+                            "", loginId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 10
- testRunner.When("Delete all records in the education list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+   testRunner.And("Delete all educations in the education list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02 - Add new education in the education list")]
-        [NUnit.Framework.TestCaseAttribute("1", null)]
-        [NUnit.Framework.TestCaseAttribute("2", null)]
-        [NUnit.Framework.TestCaseAttribute("3", null)]
-        [NUnit.Framework.TestCaseAttribute("4", null)]
-        [NUnit.Framework.TestCaseAttribute("5", null)]
-        public void _02_AddNewEducationInTheEducationList(string id, string[] exampleTags)
-        {
-            string[] tagsOfScenario = exampleTags;
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("id", id);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02 - Add new education in the education list", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 11
+ testRunner.When(string.Format("User adds a new education \'{0}\' and should be added successfully", educationId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
 #line 12
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 13
-    testRunner.Given("User logged into Mars URL and navigates to Education tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 14
- testRunner.When(string.Format("User creates a new education with \'{0}\'", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 15
- testRunner.Then(string.Format("The education with \'{0}\' should be created successfully", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.When(string.Format("User deletes education \'{0}\' and should be deleted successfully", educationId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03 - Delete an existing education in the education list")]
-        [NUnit.Framework.TestCaseAttribute("1", null)]
-        public void _03_DeleteAnExistingEducationInTheEducationList(string id, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("02 - Add an existing education in the education list")]
+        [NUnit.Framework.TestCaseAttribute("1", "1", null)]
+        public void _02_AddAnExistingEducationInTheEducationList(string loginId, string educationId, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("id", id);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03 - Delete an existing education in the education list", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 25
+            argumentsOfScenario.Add("loginId", loginId);
+            argumentsOfScenario.Add("educationId", educationId);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02 - Add an existing education in the education list", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 19
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -158,14 +139,95 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 26
-    testRunner.Given("User logged into Mars URL and navigates to Education tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 20
+  testRunner.Given(string.Format("User logged into Mars URL with login details \'{0}\' and navigates to Education tab" +
+                            "", loginId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 27
- testRunner.When(string.Format("User deletes an existing education with \'{0}\'", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 21
+   testRunner.And("Delete all educations in the education list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 28
- testRunner.Then(string.Format("The education with \'{0}\' should be deleted successfully", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 22
+   testRunner.And(string.Format("User has education \'{0}\' in the education list", educationId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 23
+ testRunner.When(string.Format("User tries to add education \'{0}\' again", educationId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 24
+ testRunner.Then(string.Format("The education \'{0}\' should not be added again", educationId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("03 - Add an empty education in the education list")]
+        [NUnit.Framework.TestCaseAttribute("1", "1", null)]
+        public void _03_AddAnEmptyEducationInTheEducationList(string loginId, string educationId, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("loginId", loginId);
+            argumentsOfScenario.Add("educationId", educationId);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03 - Add an empty education in the education list", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 30
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 31
+  testRunner.Given(string.Format("User logged into Mars URL with login details \'{0}\' and navigates to Education tab" +
+                            "", loginId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 32
+   testRunner.And("Delete all educations in the education list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 33
+ testRunner.When(string.Format("User tries to add empty education \'{0}\' in the education list", educationId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 34
+ testRunner.Then(string.Format("The education \'{0}\' should not allow empty education", educationId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("04 - Add special characters in the education")]
+        [NUnit.Framework.TestCaseAttribute("1", "1", null)]
+        public void _04_AddSpecialCharactersInTheEducation(string loginId, string educationId, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("loginId", loginId);
+            argumentsOfScenario.Add("educationId", educationId);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04 - Add special characters in the education", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 40
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 41
+  testRunner.Given(string.Format("User logged into Mars URL with login details \'{0}\' and navigates to Education tab" +
+                            "", loginId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 42
+   testRunner.And("Delete all educations in the education list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 43
+ testRunner.When(string.Format("User tries to add special characters \'{0}\' in the education", educationId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 44
+ testRunner.Then(string.Format("The education \'{0}\' should not allow special characters", educationId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

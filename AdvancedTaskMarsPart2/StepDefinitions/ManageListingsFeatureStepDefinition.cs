@@ -25,16 +25,24 @@ namespace AdvancedTaskMarsPart2.StepDefinitions
             manageListingsComponent = new ManageListingsComponent();
         }
 
-        [Given(@"User logged into Mars URL and navigates to Manage Listings tab")]
-        public void GivenUserLoggedIntoMarsURLAndNavigatesToManageListingsTab()
+        [Given(@"User logged into Mars URL with login details '([^']*)' and navigates to Manage Listings tab")]
+        public void GivenUserLoggedIntoMarsURLWithLoginDetailsAndNavigatesToManageListingsTab(int id)
         {
+            UserInformation userInformation = JsonReader.LoadData<UserInformation>(@"UserInformation.json").FirstOrDefault(x => x.Id == id);
             signInComponent.clickSignInButton();
-            List<UserInformation> userInformatioList = JsonReader.LoadData<UserInformation>(@"UserInformation.json");
-            foreach (var userInformation in userInformatioList)
-            {
-                loginInComponent.LoginActions(userInformation);
-            }
+            loginInComponent.LoginActions(userInformation);
             navigationMenuTabsComponents.clickManageListingsTab();
+        }
+
+        [Given(@"User adds a shareSkill '([^']*)' in the Manage Listings")]
+        public void GivenUserAddsAShareSkillInTheManageListings(int id)
+        {
+            ShareSkillData shareSkillData = JsonReader.LoadData<ShareSkillData>(@"ShareSkillData.json").FirstOrDefault(x => x.Id == id);
+            manageListingsOverviewComponents.clickShareSkillButton();
+            manageListingsComponent.addShareSkill(shareSkillData);
+            navigationMenuTabsComponents.clickManageListingsTab();
+            string newTitle = manageListingsComponent.getTitle(shareSkillData.Title);
+            ManageListingsAssertHelper.assertUpdateManageListingsSuccessMessage(shareSkillData.Title, newTitle);
         }
 
         [When(@"User edits and update the skills with '([^']*)' in the Manage Listings")]
@@ -50,8 +58,8 @@ namespace AdvancedTaskMarsPart2.StepDefinitions
         {
             ShareSkillData shareSkillData = JsonReader.LoadData<ShareSkillData>(@"ShareSkillData.json").FirstOrDefault(x => x.Id == id);
             navigationMenuTabsComponents.clickManageListingsTab();
-            string newTitle = manageListingsComponent.getTitle(shareSkillData.Title);
-            ManageListingsAssertHelper.assertUpdateManageListingsSuccessMessage(shareSkillData.Title, newTitle);
+            string newTitle = manageListingsComponent.getTitle(shareSkillData.UpdateTitle);
+            ManageListingsAssertHelper.assertUpdateManageListingsSuccessMessage(shareSkillData.UpdateTitle, newTitle);
         }
 
         [When(@"User view the skills with '([^']*)' in the Manage Listings")]
@@ -65,8 +73,8 @@ namespace AdvancedTaskMarsPart2.StepDefinitions
         public void ThenTheSkillsWithAreViewedInDetailSuccessfully(int id)
         {
             ShareSkillData shareSkillData = JsonReader.LoadData<ShareSkillData>(@"ShareSkillData.json").FirstOrDefault(x => x.Id == id);
-            string viewTitle = manageListingsOverviewComponents.getViewTitle(shareSkillData.Title);
-            ManageListingsAssertHelper.assertViewManageListingsSuccessMessage(shareSkillData.Title, viewTitle);
+            string viewTitle = manageListingsOverviewComponents.getViewTitle(shareSkillData.UpdateTitle);
+            ManageListingsAssertHelper.assertViewManageListingsSuccessMessage(shareSkillData.UpdateTitle, viewTitle);
         }
 
 
@@ -82,14 +90,14 @@ namespace AdvancedTaskMarsPart2.StepDefinitions
         public void ThenTheSkillWithAreDeletedSuccessfully(int id)
         {
             string actualMessage = manageListingsOverviewComponents.getMessage();
-            ManageListingsAssertHelper.assertDeleteManageListingsSuccessMessage("Nunit has been deleted", actualMessage);
+            ManageListingsAssertHelper.assertDeleteManageListingsSuccessMessage("Selenium has been deleted", actualMessage);
         }
 
         [When(@"User deactivates the existing skill with '([^']*)'")]
         public void WhenUserDeactivatesTheExistingSkillWith(int id)
         {
-            ManageListingsData manageListingsData = JsonReader.LoadData<ManageListingsData>(@"ManageListingsData.json").FirstOrDefault(x => x.Id == id);
-            manageListingsOverviewComponents.disableActiveCheckbox(manageListingsData);
+            ShareSkillData shareSkillData = JsonReader.LoadData<ShareSkillData>(@"ShareSkillData.json").FirstOrDefault(x => x.Id == id);
+            manageListingsOverviewComponents.disableActiveCheckbox(shareSkillData);
         }
 
         [Then(@"The skill should be deactivated successfully")]
@@ -102,8 +110,8 @@ namespace AdvancedTaskMarsPart2.StepDefinitions
         [When(@"User activates the existing skill with '([^']*)'")]
         public void WhenUserActivatesTheExistingSkillWith(int id)
         {
-            ManageListingsData manageListingsData = JsonReader.LoadData<ManageListingsData>(@"ManageListingsData.json").FirstOrDefault(x => x.Id == id);
-            manageListingsOverviewComponents.enableActiveCheckbox(manageListingsData);
+            ShareSkillData shareSkillData = JsonReader.LoadData<ShareSkillData>(@"ShareSkillData.json").FirstOrDefault(x => x.Id == id);
+            manageListingsOverviewComponents.enableActiveCheckbox(shareSkillData);
         }
 
         [Then(@"The skill should be activated successfully")]

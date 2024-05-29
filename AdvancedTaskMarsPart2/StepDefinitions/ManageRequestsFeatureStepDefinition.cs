@@ -27,15 +27,12 @@ namespace AdvancedTaskMarsPart2.StepDefinitions
             receivedRequestsComponent = new ReceivedRequestsComponent();
         }
 
-        [Given(@"User logged into Mars URL and navigates to Manage Requests tab")]
-        public void GivenUserLoggedIntoMarsURLAndNavigatesToManageRequestsTab()
+        [Given(@"User logged into Mars URL with login details '([^']*)' and navigates to Manage Requests tab")]
+        public void GivenUserLoggedIntoMarsURLWithLoginDetailsAndNavigatesToManageRequestsTab(int id)
         {
+            UserInformation userInformation = JsonReader.LoadData<UserInformation>(@"UserInformation.json").FirstOrDefault(x => x.Id == id);
             signInComponent.clickSignInButton();
-            List<UserInformation> userInformatioList = JsonReader.LoadData<UserInformation>(@"UserInformation.json");
-            foreach (var userInformation in userInformatioList)
-            {
-                loginInComponent.LoginActions(userInformation);
-            }
+            loginInComponent.LoginActions(userInformation);
             navigationMenuTabsComponents.clickManageRequestsTab();
         }
 

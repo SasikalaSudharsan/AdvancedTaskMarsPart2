@@ -1,31 +1,49 @@
 ﻿Feature: CertificationsFeature
 
 As a user, 
-I would like to add, edit and delete certifications 
-so that people seeking for certifications can look at it	
-
+I would like to add and delete certifications 
+so that people seeking for certifications can look at it
+       
 @tag1
-Scenario: 01 - Delete all records in the certifications list
-	Given User logged into Mars URL and navigates to Certifications tab
-	When Delete all records in the certifications list
+Scenario Outline: 01 - Add and then delete certification in the certifications list
+   Given  User logged into Mars URL with login details '<loginId>' and navigates to Certifications tab
+    And  Delete all certifications in the certifications list
+	When User adds a new certification '<certificationId>' and should be added successfully
+     When User deletes certification '<certificationId>' and should be deleted successfully
+    
+Examples: 
+        | loginId | certificationId |
+        | 1       | 1               |
+        | 1       | 2               |
+        | 1       | 3               |
 
-Scenario Outline: 02 - Add new certification in the certifications list
-    Given User logged into Mars URL and navigates to Certifications tab
-	When User creates a new certification with '<id>'
-	Then The certification with '<id>' should be created successfully
+Scenario Outline: 02 - Add an existing certification in the certifications list
+   Given  User logged into Mars URL with login details '<loginId>' and navigates to Certifications tab
+    And  Delete all certifications in the certifications list
+   And User has a certification '<certificationId>' in the certifications list
+   When User tries to add the certification '<certificationId>' again
+   Then The certification '<certificationId>' should not be added 
 
 Examples: 
-        | id |
-        | 1  |
-        | 2  |
-        | 3  |
-        | 4  |
+        | loginId | certificationId |
+        | 1       | 1               |
 
-Scenario Outline: 03 - Delete an existing certification in the certifications list
-    Given User logged into Mars URL and navigates to Certifications tab
-	When User deletes an existing certification with '<id>'
-	Then The certification with '<id>' should be deleted successfully
+Scenario Outline: 03 - Add an empty certification in the certifications list
+  Given  User logged into Mars URL with login details '<loginId>' and navigates to Certifications tab
+    And  Delete all certifications in the certifications list
+   When User tries to add empty certification '<certificationId>' in the certifications list
+   Then The certification '<certificationId>' should not allow empty certification
 
 Examples: 
-        | id |
-        | 1  |
+        | loginId | certificationId |
+        | 1       | 1               |
+
+Scenario Outline: 04 - Add special characters in the certification
+  Given  User logged into Mars URL with login details '<loginId>' and navigates to Certifications tab
+    And  Delete all certifications in the certifications list
+   When User tries to add special characters in the certification '<certificationId>'
+   Then The certification '<certificationId>' should not allow special characters
+
+Examples: 
+        | loginId | certificationId |
+        | 1       | 1               |

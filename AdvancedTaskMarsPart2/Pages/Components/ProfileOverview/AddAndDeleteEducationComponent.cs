@@ -58,7 +58,7 @@ namespace AdvancedTaskMarsPart2.Pages.Components.ProfileOverview
             }
         }
 
-        public void DeleteAllRecords()
+        public void DeleteAllEducation()
         {
             try
             {

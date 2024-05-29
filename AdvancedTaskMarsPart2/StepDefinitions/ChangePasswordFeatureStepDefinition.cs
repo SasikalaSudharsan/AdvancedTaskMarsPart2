@@ -23,34 +23,46 @@ namespace AdvancedTaskMarsPart2.StepDefinitions
             changePasswordComponent = new ChangePasswordComponent();
         }
 
-        [Given(@"User logged into Mars URL and navigates to User tab")]
-        public void GivenUserLoggedIntoMarsURLAndNavigatesToUserTab()
+        [Given(@"User logged into Mars URL with login details '([^']*)' and navigates to User tab")]
+        public void GivenUserLoggedIntoMarsURLWithLoginDetailsAndNavigatesToUserTab(int id)
         {
+            UserInformation userInformation = JsonReader.LoadData<UserInformation>(@"UserInformation.json").FirstOrDefault(x => x.Id == id);
             signInComponent.clickSignInButton();
-            List<UserInformation> userInformatioList = JsonReader.LoadData<UserInformation>(@"UserInformation.json");
-            foreach (var userInformation in userInformatioList)
-            {
-                loginInComponent.LoginActions(userInformation);
-            }
+            loginInComponent.LoginActions(userInformation);
             userTabComponent.clickUserTab();
         }
 
         [When(@"User clicks Change Password and updates the new password with '([^']*)'")]
         public void WhenUserClicksChangePasswordAndUpdatesTheNewPasswordWith(int id)
         {
-            ChangePasswordData changePasswordData = JsonReader.LoadData<ChangePasswordData>(@"changePassword.json").FirstOrDefault(x => x.Id == id);
+            ChangePasswordData changePasswordData = JsonReader.LoadData<ChangePasswordData>(@"passwordValidData.json").FirstOrDefault(x => x.Id == id);
             changePasswordComponent.changePassword(changePasswordData);
         }
 
-        [Then(@"New Password updated with '([^']*)' successfully")]
-        public void ThenNewPasswordUpdatedWithSuccessfully(int id)
+        [Then(@"New Password '([^']*)' updated successfully")]
+        public void ThenNewPasswordUpdatedSuccessfully(int id)
         {
-            ChangePasswordData changePasswordData = JsonReader.LoadData<ChangePasswordData>(@"changePassword.json").FirstOrDefault(x => x.Id == id);
+            ChangePasswordData changePasswordData = JsonReader.LoadData<ChangePasswordData>(@"passwordValidData.json").FirstOrDefault(x => x.Id == id);
             string actualMessage = changePasswordComponent.getMessage();
-            ChangePasswordAssertHelper.assertChangePasswordSuccessMessage(changePasswordData.ExpectedMessage, actualMessage);
+            ChangePasswordAssertHelper.assertChangePasswordMessage(changePasswordData.ExpectedMessage, actualMessage);
             string newPassword = changePasswordData.NewPassword;
             PasswordManager passwordManager = new PasswordManager();
             passwordManager.WriteNewPasswordToJson(newPassword);
+        }
+
+        [When(@"User clicks Change Password and updates the new password with invalid '([^']*)'")]
+        public void WhenUserClicksChangePasswordAndUpdatesTheNewPasswordWithInvalid(int id)
+        {
+            ChangePasswordData changePasswordData = JsonReader.LoadData<ChangePasswordData>(@"passwordInvalidData.json").FirstOrDefault(x => x.Id == id);
+            changePasswordComponent.changePassword(changePasswordData);
+        }
+
+        [Then(@"The Password '([^']*)' should not be updated")]
+        public void ThenThePasswordShouldNotBeUpdated(int id)
+        {
+            ChangePasswordData changePasswordData = JsonReader.LoadData<ChangePasswordData>(@"passwordInvalidData.json").FirstOrDefault(x => x.Id == id);
+            string actualMessage = changePasswordComponent.getMessage();
+            ChangePasswordAssertHelper.assertChangePasswordMessage(changePasswordData.ExpectedMessage, actualMessage);
         }
     }
 }

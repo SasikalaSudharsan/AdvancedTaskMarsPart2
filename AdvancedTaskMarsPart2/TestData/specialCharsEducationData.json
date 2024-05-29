@@ -1,0 +1,11 @@
+﻿[
+  {
+    "Id": 1,
+    "UniversityName": "@#$%^&*",
+    "Country": "Belgium",
+    "Title": "M.A",
+    "Degree": "@#$%^&*",
+    "YearOfGraduation": "2005",
+    "ExpectedMessage": "Special characters are not allowed"
+  }
+]

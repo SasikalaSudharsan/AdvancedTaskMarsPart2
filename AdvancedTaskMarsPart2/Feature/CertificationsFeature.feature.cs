@@ -35,8 +35,8 @@ namespace AdvancedTaskMarsPart2.Feature
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Feature", "CertificationsFeature", "As a user, \r\nI would like to add, edit and delete certifications \r\nso that people" +
-                    " seeking for certifications can look at it\t", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Feature", "CertificationsFeature", "As a user, \r\nI would like to add and delete certifications \r\nso that people seeki" +
+                    "ng for certifications can look at it", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,14 +75,24 @@ namespace AdvancedTaskMarsPart2.Feature
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01 - Delete all records in the certifications list")]
+        [NUnit.Framework.DescriptionAttribute("01 - Add and then delete certification in the certifications list")]
         [NUnit.Framework.CategoryAttribute("tag1")]
-        public void _01_DeleteAllRecordsInTheCertificationsList()
+        [NUnit.Framework.TestCaseAttribute("1", "1", null)]
+        [NUnit.Framework.TestCaseAttribute("1", "2", null)]
+        [NUnit.Framework.TestCaseAttribute("1", "3", null)]
+        public void _01_AddAndThenDeleteCertificationInTheCertificationsList(string loginId, string certificationId, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "tag1"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01 - Delete all records in the certifications list", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            argumentsOfScenario.Add("loginId", loginId);
+            argumentsOfScenario.Add("certificationId", certificationId);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01 - Add and then delete certification in the certifications list", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -94,60 +104,33 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 9
- testRunner.Given("User logged into Mars URL and navigates to Certifications tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+   testRunner.Given(string.Format("User logged into Mars URL with login details \'{0}\' and navigates to Certification" +
+                            "s tab", loginId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 10
- testRunner.When("Delete all records in the certifications list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.And("Delete all certifications in the certifications list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("02 - Add new certification in the certifications list")]
-        [NUnit.Framework.TestCaseAttribute("1", null)]
-        [NUnit.Framework.TestCaseAttribute("2", null)]
-        [NUnit.Framework.TestCaseAttribute("3", null)]
-        [NUnit.Framework.TestCaseAttribute("4", null)]
-        public void _02_AddNewCertificationInTheCertificationsList(string id, string[] exampleTags)
-        {
-            string[] tagsOfScenario = exampleTags;
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("id", id);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02 - Add new certification in the certifications list", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 11
+ testRunner.When(string.Format("User adds a new certification \'{0}\' and should be added successfully", certificationId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
 #line 12
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 13
-    testRunner.Given("User logged into Mars URL and navigates to Certifications tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 14
- testRunner.When(string.Format("User creates a new certification with \'{0}\'", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 15
- testRunner.Then(string.Format("The certification with \'{0}\' should be created successfully", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+     testRunner.When(string.Format("User deletes certification \'{0}\' and should be deleted successfully", certificationId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("03 - Delete an existing certification in the certifications list")]
-        [NUnit.Framework.TestCaseAttribute("1", null)]
-        public void _03_DeleteAnExistingCertificationInTheCertificationsList(string id, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("02 - Add an existing certification in the certifications list")]
+        [NUnit.Framework.TestCaseAttribute("1", "1", null)]
+        public void _02_AddAnExistingCertificationInTheCertificationsList(string loginId, string certificationId, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("id", id);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03 - Delete an existing certification in the certifications list", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 24
+            argumentsOfScenario.Add("loginId", loginId);
+            argumentsOfScenario.Add("certificationId", certificationId);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02 - Add an existing certification in the certifications list", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 20
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -157,14 +140,95 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 21
+   testRunner.Given(string.Format("User logged into Mars URL with login details \'{0}\' and navigates to Certification" +
+                            "s tab", loginId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 22
+    testRunner.And("Delete all certifications in the certifications list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 23
+   testRunner.And(string.Format("User has a certification \'{0}\' in the certifications list", certificationId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 24
+   testRunner.When(string.Format("User tries to add the certification \'{0}\' again", certificationId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
 #line 25
-    testRunner.Given("User logged into Mars URL and navigates to Certifications tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+   testRunner.Then(string.Format("The certification \'{0}\' should not be added", certificationId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 26
- testRunner.When(string.Format("User deletes an existing certification with \'{0}\'", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("03 - Add an empty certification in the certifications list")]
+        [NUnit.Framework.TestCaseAttribute("1", "1", null)]
+        public void _03_AddAnEmptyCertificationInTheCertificationsList(string loginId, string certificationId, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("loginId", loginId);
+            argumentsOfScenario.Add("certificationId", certificationId);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03 - Add an empty certification in the certifications list", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 31
+this.ScenarioInitialize(scenarioInfo);
 #line hidden
-#line 27
- testRunner.Then(string.Format("The certification with \'{0}\' should be deleted successfully", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 32
+  testRunner.Given(string.Format("User logged into Mars URL with login details \'{0}\' and navigates to Certification" +
+                            "s tab", loginId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 33
+    testRunner.And("Delete all certifications in the certifications list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 34
+   testRunner.When(string.Format("User tries to add empty certification \'{0}\' in the certifications list", certificationId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 35
+   testRunner.Then(string.Format("The certification \'{0}\' should not allow empty certification", certificationId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("04 - Add special characters in the certification")]
+        [NUnit.Framework.TestCaseAttribute("1", "1", null)]
+        public void _04_AddSpecialCharactersInTheCertification(string loginId, string certificationId, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("loginId", loginId);
+            argumentsOfScenario.Add("certificationId", certificationId);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04 - Add special characters in the certification", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 41
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 42
+  testRunner.Given(string.Format("User logged into Mars URL with login details \'{0}\' and navigates to Certification" +
+                            "s tab", loginId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 43
+    testRunner.And("Delete all certifications in the certifications list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 44
+   testRunner.When(string.Format("User tries to add special characters in the certification \'{0}\'", certificationId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 45
+   testRunner.Then(string.Format("The certification \'{0}\' should not allow special characters", certificationId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

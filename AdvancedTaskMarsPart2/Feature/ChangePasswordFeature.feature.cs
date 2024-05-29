@@ -74,10 +74,10 @@ namespace AdvancedTaskMarsPart2.Feature
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("01 - Change the new password")]
+        [NUnit.Framework.DescriptionAttribute("01 - Change the new password with valid details")]
         [NUnit.Framework.CategoryAttribute("tag1")]
-        [NUnit.Framework.TestCaseAttribute("1", null)]
-        public void _01_ChangeTheNewPassword(string id, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("1", "1", null)]
+        public void _01_ChangeTheNewPasswordWithValidDetails(string loginId, string passwordId, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "tag1"};
@@ -87,8 +87,9 @@ namespace AdvancedTaskMarsPart2.Feature
             }
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("id", id);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01 - Change the new password", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            argumentsOfScenario.Add("loginId", loginId);
+            argumentsOfScenario.Add("passwordId", passwordId);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01 - Change the new password with valid details", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -100,13 +101,46 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Given("User logged into Mars URL and navigates to User tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given(string.Format("User logged into Mars URL with login details \'{0}\' and navigates to User tab", loginId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
- testRunner.When(string.Format("User clicks Change Password and updates the new password with \'{0}\'", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("User clicks Change Password and updates the new password with \'{0}\'", passwordId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.Then(string.Format("New Password updated with \'{0}\' successfully", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("New Password \'{0}\' updated successfully", passwordId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("02 - Change the new password with invalid details")]
+        [NUnit.Framework.TestCaseAttribute("1", "1", null)]
+        public void _02_ChangeTheNewPasswordWithInvalidDetails(string loginId, string passwordId, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("loginId", loginId);
+            argumentsOfScenario.Add("passwordId", passwordId);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02 - Change the new password with invalid details", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 16
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 17
+testRunner.Given(string.Format("User logged into Mars URL with login details \'{0}\' and navigates to User tab", loginId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 18
+ testRunner.When(string.Format("User clicks Change Password and updates the new password with invalid \'{0}\'", passwordId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 19
+ testRunner.Then(string.Format("The Password \'{0}\' should not be updated", passwordId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

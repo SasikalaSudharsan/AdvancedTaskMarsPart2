@@ -77,8 +77,8 @@ namespace AdvancedTaskMarsPart2.Feature
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("01 - Edit and Update the skills in the Manage Listings")]
         [NUnit.Framework.CategoryAttribute("tag1")]
-        [NUnit.Framework.TestCaseAttribute("1", null)]
-        public void _01_EditAndUpdateTheSkillsInTheManageListings(string id, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("1", "1", null)]
+        public void _01_EditAndUpdateTheSkillsInTheManageListings(string loginId, string id, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "tag1"};
@@ -88,6 +88,7 @@ namespace AdvancedTaskMarsPart2.Feature
             }
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("loginId", loginId);
             argumentsOfScenario.Add("id", id);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01 - Edit and Update the skills in the Manage Listings", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
@@ -101,12 +102,16 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Given("User logged into Mars URL and navigates to Manage Listings tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("User logged into Mars URL with login details \'{0}\' and navigates to Manage Listin" +
+                            "gs tab", loginId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
- testRunner.When(string.Format("User edits and update the skills with \'{0}\' in the Manage Listings", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And(string.Format("User adds a shareSkill \'{0}\' in the Manage Listings", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
+ testRunner.When(string.Format("User edits and update the skills with \'{0}\' in the Manage Listings", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 11
  testRunner.Then(string.Format("The skills with \'{0}\' are updated successfully", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -115,14 +120,15 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("02 - View the skills in detail in the Manage Listings")]
-        [NUnit.Framework.TestCaseAttribute("1", null)]
-        public void _02_ViewTheSkillsInDetailInTheManageListings(string id, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("1", "1", null)]
+        public void _02_ViewTheSkillsInDetailInTheManageListings(string loginId, string id, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("loginId", loginId);
             argumentsOfScenario.Add("id", id);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02 - View the skills in detail in the Manage Listings", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 17
+#line 18
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -132,13 +138,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 18
- testRunner.Given("User logged into Mars URL and navigates to Manage Listings tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 19
- testRunner.When(string.Format("User view the skills with \'{0}\' in the Manage Listings", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given(string.Format("User logged into Mars URL with login details \'{0}\' and navigates to Manage Listin" +
+                            "gs tab", loginId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 20
+ testRunner.When(string.Format("User view the skills with \'{0}\' in the Manage Listings", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 21
  testRunner.Then(string.Format("The skills with \'{0}\' are viewed in detail successfully", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -147,14 +154,15 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("03 - Delete the skills in the Manage Listings")]
-        [NUnit.Framework.TestCaseAttribute("1", null)]
-        public void _03_DeleteTheSkillsInTheManageListings(string id, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("1", "1", null)]
+        public void _03_DeleteTheSkillsInTheManageListings(string loginId, string id, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("loginId", loginId);
             argumentsOfScenario.Add("id", id);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03 - Delete the skills in the Manage Listings", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 27
+#line 28
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -164,13 +172,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 28
- testRunner.Given("User logged into Mars URL and navigates to Manage Listings tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 29
- testRunner.When(string.Format("User deletes the skill with \'{0}\' in the Manage Listings", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given(string.Format("User logged into Mars URL with login details \'{0}\' and navigates to Manage Listin" +
+                            "gs tab", loginId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 30
+ testRunner.And(string.Format("User adds a shareSkill \'{0}\' in the Manage Listings", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 31
+ testRunner.When(string.Format("User deletes the skill with \'{0}\' in the Manage Listings", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 32
  testRunner.Then(string.Format("The skill with \'{0}\' are deleted successfully", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -179,14 +191,15 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("04 - Disable the skill in the Manage Listings")]
-        [NUnit.Framework.TestCaseAttribute("1", null)]
-        public void _04_DisableTheSkillInTheManageListings(string id, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("1", "1", null)]
+        public void _04_DisableTheSkillInTheManageListings(string loginId, string id, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("loginId", loginId);
             argumentsOfScenario.Add("id", id);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("04 - Disable the skill in the Manage Listings", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 37
+#line 39
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -196,13 +209,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 38
-    testRunner.Given("User logged into Mars URL and navigates to Manage Listings tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 40
+    testRunner.Given(string.Format("User logged into Mars URL with login details \'{0}\' and navigates to Manage Listin" +
+                            "gs tab", loginId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 39
+#line 41
+ testRunner.And(string.Format("User adds a shareSkill \'{0}\' in the Manage Listings", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 42
  testRunner.When(string.Format("User deactivates the existing skill with \'{0}\'", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 40
+#line 43
  testRunner.Then("The skill should be deactivated successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -211,14 +228,15 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("05 - Enable the skill in the Manage Listings")]
-        [NUnit.Framework.TestCaseAttribute("1", null)]
-        public void _05_EnableTheSkillInTheManageListings(string id, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("1", "1", null)]
+        public void _05_EnableTheSkillInTheManageListings(string loginId, string id, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("loginId", loginId);
             argumentsOfScenario.Add("id", id);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("05 - Enable the skill in the Manage Listings", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 47
+#line 50
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -228,13 +246,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 48
-    testRunner.Given("User logged into Mars URL and navigates to Manage Listings tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 51
+    testRunner.Given(string.Format("User logged into Mars URL with login details \'{0}\' and navigates to Manage Listin" +
+                            "gs tab", loginId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 49
+#line 52
  testRunner.When(string.Format("User activates the existing skill with \'{0}\'", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 50
+#line 53
  testRunner.Then("The skill should be activated successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

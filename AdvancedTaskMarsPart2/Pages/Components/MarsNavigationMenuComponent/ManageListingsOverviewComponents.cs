@@ -6,6 +6,7 @@ namespace AdvancedTaskMarsPart2.Pages.Components.MarsNavigationMenuComponent
 {
     public class ManageListingsOverviewComponents : CommonDriver
     {
+        private IWebElement ShareSkillButton;
         private IWebElement EditButton;
         private IWebElement DeleteButton;
         private IWebElement YesButton;
@@ -13,6 +14,18 @@ namespace AdvancedTaskMarsPart2.Pages.Components.MarsNavigationMenuComponent
         private IWebElement ActiveCheckbox;
         private IWebElement ViewButton;
         private IWebElement ViewTitle;
+
+        public void renderShareSkill()
+        {
+            try
+            {
+                ShareSkillButton = driver.FindElement(By.XPath("//a[text()='Share Skill']"));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
 
         public void renderEditButton(string existingTitle)
         {
@@ -99,9 +112,16 @@ namespace AdvancedTaskMarsPart2.Pages.Components.MarsNavigationMenuComponent
             }
         }
 
+        public void clickShareSkillButton()
+        {
+            Thread.Sleep(4000);
+            renderShareSkill();
+            ShareSkillButton.Click();
+        }
+
         public void clickUpdateButton(ShareSkillData shareSkillData)
         {
-            string existingTitle = shareSkillData.ExistingTitle;
+            string existingTitle = shareSkillData.Title;
             Thread.Sleep(6000);
             renderEditButton(existingTitle);
             EditButton.Click();
@@ -109,7 +129,7 @@ namespace AdvancedTaskMarsPart2.Pages.Components.MarsNavigationMenuComponent
 
         public void clickViewButton(ShareSkillData shareSkillData)
         {
-            string title = shareSkillData.Title;
+            string title = shareSkillData.UpdateTitle;
             Thread.Sleep(6000);
             renderViewComponents(title);
             ViewButton.Click();
@@ -117,7 +137,7 @@ namespace AdvancedTaskMarsPart2.Pages.Components.MarsNavigationMenuComponent
 
         public string getViewTitle(string title)
         {
-            Thread.Sleep(4000);
+            Thread.Sleep(6000);
             renderViewTitle(title);
             return ViewTitle.Text;
         }
@@ -138,17 +158,17 @@ namespace AdvancedTaskMarsPart2.Pages.Components.MarsNavigationMenuComponent
             return successMessage.Text;
         }
 
-        public void disableActiveCheckbox(ManageListingsData manageListingsData)
+        public void disableActiveCheckbox(ShareSkillData shareSkillData)
         {
-            string title = manageListingsData.Title;
+            string title = shareSkillData.Title;
             Thread.Sleep(6000);
             renderActiveChechbox(title);
             ActiveCheckbox.Click();
         }
 
-        public void enableActiveCheckbox(ManageListingsData manageListingsData)
+        public void enableActiveCheckbox(ShareSkillData shareSkillData)
         {
-            string title = manageListingsData.Title;
+            string title = shareSkillData.Title;
             Thread.Sleep(4000);
             renderActiveChechbox(title);
             ActiveCheckbox.Click();

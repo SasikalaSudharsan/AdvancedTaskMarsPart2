@@ -35,12 +35,14 @@ namespace AdvancedTaskMarsPart2.Pages.Components.ProfileOverview
 
         public void clickAddNewButton()
         {
+            Thread.Sleep(8000);
             renderAddButton();
             AddNewButton.Click();
         }
 
         public void clickDeleteButton(CertificationData certificationData)
         {
+            Thread.Sleep(6000);
             string certificate = certificationData.Certificate;
             string certifiedFrom = certificationData.CertifiedFrom;
             renderDeleteButton(certificate, certifiedFrom);
