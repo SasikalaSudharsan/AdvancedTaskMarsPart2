@@ -1,0 +1,19 @@
+﻿[
+  {
+    "Id": 1,
+    "Title": "Selenium",
+    "Description": "Selenium with Java",
+    "Category": "Programming & Tech",
+    "Subcategory": "QA",
+    "Tags": "Selenium",
+    "ServiceType": "Hourly basis service",
+    "LocationType": "On-site",
+    "StartDate": "06/05/2024",
+    "EndDate": "06/30/2024",
+    "SkillTrade": "Credit",
+    "Credit": "5",
+    "Active": "Active",
+    "UpdateTitle": "Nunit",
+    "UpdateDescription": "Nunit framework"
+  }
+]

@@ -1,0 +1,12 @@
+﻿[
+  {
+    "Id": 1,
+    "UniversityName": "University of Austin",
+    "Country": "United States",
+    "Title": "B.A",
+    "Degree": "English",
+    "YearOfGraduation": "2020",
+    "AddExpectedMessage": "Education has been added",
+    "ExpectedMessage": "This information is already exist."
+  }
+]

@@ -1,0 +1,9 @@
+﻿[
+  {
+    "Id": 1,
+    "Certificate": "@#$%&(",
+    "CertifiedFrom": "Training Institute",
+    "Year": "2013",
+    "ExpectedMessage": "Special characters are not allowed"
+  }
+]

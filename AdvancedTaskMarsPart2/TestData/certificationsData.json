@@ -1,0 +1,26 @@
+﻿[
+  {
+    "Id": 1,
+    "Certificate": "ISTQB",
+    "CertifiedFrom": "Training Institute",
+    "Year": "2018",
+    "AddExpectedMessage": "ISTQB has been added to your certification",
+    "DeleteExpectedMessage": "ISTQB has been deleted from your certification"
+  },
+  {
+    "Id": 2,
+    "Certificate": "Microsoft Azure",
+    "CertifiedFrom": "Microsoft",
+    "Year": "2020",
+    "AddExpectedMessage": "Microsoft Azure has been added to your certification",
+    "DeleteExpectedMessage": "Microsoft Azure has been deleted from your certification"
+  },
+  {
+    "Id": 3,
+    "Certificate": "Selenium",
+    "CertifiedFrom": "Udemy",
+    "Year": "2015",
+    "AddExpectedMessage": "Selenium has been added to your certification",
+    "DeleteExpectedMessage": "Selenium has been deleted from your certification"
+  }
+]
